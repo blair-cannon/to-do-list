@@ -6,11 +6,8 @@ function App() {
     <div className="App">
       <h1>TO DO LIST</h1>
       <input type="text" placeholder="Enter your new task"></input>
-      <div>
-        <ToDoList>
-          <Task></Task> 
-        </ToDoList>
-      </div>
+        <ToDoList/>
+          <Task/> 
       <div>Counter</div>
       <div className="filterButtons">
         <button>All</button>
