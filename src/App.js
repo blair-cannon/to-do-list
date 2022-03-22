@@ -1,12 +1,16 @@
+import { ToDoList } from './components/ToDoList';
+import { Task } from './components/Task';
+
 function App() {
   return (
-    <div className="app">
+    <div className="App">
       <h1>TO DO LIST</h1>
       <input type="text" placeholder="Enter your new task"></input>
-      {/* <ToDoList>
-        <ToDo>trial one</ToDo>
-        <ToDo>trial two</ToDo>
-      </ToDoList> */}
+      <div>
+        <ToDoList>
+          <Task></Task> 
+        </ToDoList>
+      </div>
       <div>Counter</div>
       <div className="filterButtons">
         <button>All</button>
