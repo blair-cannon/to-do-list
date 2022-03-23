@@ -13,8 +13,9 @@ function App() {
     // console.log(inputRef.current.value);
     let newState = todos;
     newState.push(inputRef.current.value);
-    setTodos([...newState])
-    console.log('todos:', todos)
+    setTodos([...newState]);
+    console.log('todos:', todos);
+    inputRef.current.value = null; // empties input box 
   }
 
   return (
