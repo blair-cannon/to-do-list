@@ -15,3 +15,15 @@ margin-right: auto;
     display: flex;
     margin-bottom: 3rem;
 } */
+
+.marginRight {
+    margin-right: 2rem;
+}
+
+.centered-medium-card {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 3rem;
+    width: 500px;
+    height: min-content;
+}

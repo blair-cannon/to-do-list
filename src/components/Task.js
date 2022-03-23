@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import React from 'react'
+import React from 'react';
+import { CloseButton, ListGroup, Inp } from 'react-bootstrap/';
 
 
 
@@ -16,11 +17,13 @@ export default function Task({ todo }) {
 // id and status are defined in useState 
   return (
     <div>
-      <div>
-        <input type="checkbox" />
-        <label >{todo}</label>
-        <span className="close">x</span>
-      </div>
+      <ListGroup>
+        <ListGroup.Item>  
+            <input className="marginRight" type="checkbox" />
+            <label className="marginRight">{todo}</label>
+          <CloseButton /></ListGroup.Item>
+      </ListGroup>
+    
       {/* { todo }
       <p>{ task.status }</p>
       <p>{ task.id }</p> */}

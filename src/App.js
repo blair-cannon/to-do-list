@@ -39,7 +39,7 @@ function App() {
       </div> */}
    
 
-<Card>
+<Card className="centered-medium-card">
 <Card.Header>
   <Nav variant="tabs" defaultActiveKey="#first">
     <Nav.Item>
