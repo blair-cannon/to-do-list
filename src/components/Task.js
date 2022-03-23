@@ -16,9 +16,14 @@ export default function Task({ todo }) {
 // id and status are defined in useState 
   return (
     <div>
-      <p>{ todo }</p> 
+      <div>
+        <input type="checkbox" />
+        <label >{todo}</label>
+        <span className="close">x</span>
+      </div>
+      {/* { todo }
       <p>{ task.status }</p>
-      <p>{ task.id }</p>
+      <p>{ task.id }</p> */}
     </div>
   )
 }
