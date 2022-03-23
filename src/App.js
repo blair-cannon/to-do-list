@@ -3,12 +3,16 @@ import { useState, useRef } from 'react';
 
 function App() {
   const [view, setView] = useState('all');
-  const [todos, setTodos] = useState(['task test 1', 'task test 2']);
+  const [todos, setTodos] = useState([]);
   const inputRef = useRef();
   // https://reactjs.org/docs/hooks-reference.html#useref 
+  
   function newTodo(){
-    console.log(inputRef.current.value);
-    
+    // console.log(inputRef.current.value);
+    let newState = todos;
+    newState.push(inputRef.current.value);
+    setTodos([...newState])
+    console.log('todos:', todos)
   }
 
   return (
@@ -34,3 +38,10 @@ function App() {
 }
 
 export default App;
+
+
+// description = newState,
+// id = Date.now(),
+// type = active
+// );
+// console.log(todos);
