@@ -96,3 +96,22 @@ overflow menu
     button complete all
     button clear completed
     button activate all
+
+
+**Props tree** 
+App --> import ToDoList and pass todos to ToDoList from state
+ToDoList --> expects todos as prop, import Task and pass todo to Task from mapping
+Task --> expects todo as prop
+
+**unique id for each todo**
+ex: 
+1: do laundry
+2: walk dog
+3: do homework
+4: workout
+
+unique id 1: d
+uniqure id 2: w
+unique id 3: do
+unique id 4: wo
+
