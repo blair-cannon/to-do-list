@@ -12,7 +12,8 @@ export default function Task({ todo }) {
         id: Date.now(), 
         status: 'active'
       })
-
+// gets todo (description) from todo prop from input 
+// id and status are defined in useState 
   return (
     <div>
       <p>{ todo }</p> 
