@@ -5,9 +5,10 @@ function App() {
   const [view, setView] = useState('all');
   const [todos, setTodos] = useState(['task test 1', 'task test 2']);
   const inputRef = useRef();
-  // 
+  // https://reactjs.org/docs/hooks-reference.html#useref 
   function newTodo(){
-    console.log(inputRef.current.value)
+    console.log(inputRef.current.value);
+    
   }
 
   return (
