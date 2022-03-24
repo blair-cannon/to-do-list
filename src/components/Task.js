@@ -5,21 +5,19 @@ import { CloseButton, ListGroup, Inp } from 'react-bootstrap/';
 
 
 export default function Task({ todo }) {
-  // const [status, setStatus] = useState('active');
-  // const [description, setDescription] = useState([]); same as todo from state ?? 
-  // const [id, setId] = useState(0);
       const [task, setTask] = useState({
         todo: {todo},
         id: Date.now(), 
         status: 'active'
       })
+      console.log('status:', task.status );
 // gets todo (description) from todo prop from input 
 // id and status are defined in useState 
   return (
     <div>
       <ListGroup>
         <ListGroup.Item>  
-            <input className="marginRight" type="checkbox" />
+            <input onChange={handleCheckClick} className="marginRight" type="checkbox" checked="completed" />
             <label className="marginRight">{todo}</label>
           <CloseButton /></ListGroup.Item>
       </ListGroup>

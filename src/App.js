@@ -5,7 +5,7 @@ import { Card, Nav, ButtonGroup, Button } from 'react-bootstrap';
 
 function App() {
   const [view, setView] = useState('all');
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodoList] = useState([]);
   const inputRef = useRef();
   // https://reactjs.org/docs/hooks-reference.html#useref 
   
@@ -13,7 +13,7 @@ function App() {
     // console.log(inputRef.current.value);
     let newState = todos;
     newState.push(inputRef.current.value);
-    setTodos([...newState]);
+    setTodoList([...newState]);
     console.log('todos:', todos);
     inputRef.current.value = null; // empties input box 
   }
