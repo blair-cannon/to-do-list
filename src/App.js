@@ -20,7 +20,8 @@ function App() {
 
   function handleDelete(e) {
     console.log('deleted');
-    
+    const updatedTodos = todos.filter(todo => id !== todo.id);
+    setTodoList(updatedTodos);
   }
 
   return (
