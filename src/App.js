@@ -10,11 +10,14 @@ function App() {
   const [view, setView] = useState('all');
 
   const [todos, setTodoList] = useState(() => {
-    const saved = localStorage.getItem("todos");
-    const initialValue = JSON.parse(saved);
-    return initialValue || [];
+    const string = localStorage.getItem("todos");
+    const saved = JSON.parse(string); 
+    return saved || [];
   });
   // presents saved todos or returns empty array as intial state
+  
+  let counter = todos.filter((todo) => todo.status === 'active').length;
+  console.log(counter);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -24,7 +27,12 @@ function App() {
   function newTodo(e){
     // console.log(inputRef.current.value);
     let newState = todos;
-    newState.push(inputRef.current.value);
+    let todoObject = {
+      description: inputRef.current.value,
+      id: Date.now(), 
+      status: 'active'
+    }
+    newState.push(todoObject);
     setTodoList([...newState]);
     console.log('todos:', todos);
     inputRef.current.value = null; // empties input box 
@@ -34,6 +42,10 @@ function App() {
   //   console.log('deleted');
   //   const updatedTodos = todos.filter(todo => id !== todo.id);
   //   setTodoList(updatedTodos);
+  // }
+
+  // function todoCount() {
+
   // }
 
   return (
@@ -60,7 +72,7 @@ function App() {
           </Card.Title>
           <Card.Text>
             <ToDoList todos={ todos } setTodoList={ setTodoList } />
-            <span>Counter</span>
+            <span>{ counter }</span>
           </Card.Text>
           <ButtonGroup aria-label="Basic example">
             <Button variant="primary">Check All </Button>
