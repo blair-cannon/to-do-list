@@ -8,7 +8,7 @@ export default function Task({ todo, todos, setTodoList } ) {
 
   function handleCheckClick(e) {
     setTodoList((todos) => {
-      let targetTodo = todos.find(t => t.id === todo.id)
+      let targetTodo = todos.find(clicked => clicked.id === todo.id)
       targetTodo.status = targetTodo.status === 'active' ? 'completed' : 'active';
       return [...todos];
     })
@@ -16,7 +16,7 @@ export default function Task({ todo, todos, setTodoList } ) {
 
   function handleDeleteTodo(e) {
     setTodoList((todos) => {
-      let targetTodo = todos.find(t => t.id === todo.id)
+      let targetTodo = todos.find(clicked => clicked.id === todo.id)
       let updatedTodos = todos.filter(todo => todo !== targetTodo);
       return updatedTodos;
     })
