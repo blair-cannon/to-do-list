@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import { CloseButton, ListGroup } from 'react-bootstrap/';
 
@@ -12,6 +12,8 @@ export default function Task({ todo, todos, setTodoList } ) {
       })
 // gets todo (description) from todo prop from input 
 // id and status are defined in useState 
+
+
 
   function handleCheckClick(e) {
     setTask({

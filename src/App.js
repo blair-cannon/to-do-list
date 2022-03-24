@@ -1,14 +1,26 @@
 import ToDoList from './components/ToDoList'; // no brackets on ToDoList function because it was exported as default
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Nav, ButtonGroup, Button } from 'react-bootstrap';
 
 function App() {
-  const [view, setView] = useState('all');
-  const [todos, setTodoList] = useState([]);
   const inputRef = useRef();
   // https://reactjs.org/docs/hooks-reference.html#useref 
-  
+
+  const [view, setView] = useState('all');
+
+  const [todos, setTodoList] = useState(() => {
+    const saved = localStorage.getItem("todos");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
+  // presents saved todos or returns empty array as intial state
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+  // on change of [todos], new todo is saved into local storage
+
   function newTodo(e){
     // console.log(inputRef.current.value);
     let newState = todos;
