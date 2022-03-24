@@ -3,10 +3,10 @@ import React from 'react';
 import Task from './Task';
 
 export default function ToDoList({ todos, setTodoList }) {
-
+  console.log(todos)
   return (
     todos.map(todo => {
-      return <Task todo={ todo } todos={ todos } setTodoList={ setTodoList } key={ todo } />
+      return <Task todo={ todo } todos={ todos } setTodoList={ setTodoList } key={ todo.id }  />
     })
   )
 }
