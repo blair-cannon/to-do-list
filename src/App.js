@@ -42,13 +42,9 @@ function App() {
     inputRef.current.value = null; // empties input box 
   }
 
-  function showActive() {
-    if (view === 'all'){
-      todos = todos.filter((todo) => todo.status === 'active')
-    }
-    if (view === 'completed'){
-      todos = todos.filter((todo) => todo.status === 'active')
-    }
+  function updateViews(prop) {
+      return todos = todos.filter((todo) => todo.status === prop
+      // setview???
   }
 
   return (
@@ -57,13 +53,13 @@ function App() {
         <Card.Header>
           <Nav variant="tabs" defaultActiveKey="#first">
             <Nav.Item>
-              <Nav.Link href="#first" onClick={ () => updateViews() } >All</Nav.Link>
+              <Nav.Link href="#first" onClick={ () => updateViews('active || completed') } >All</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#second" onClick={ () => updateViews() }>Active</Nav.Link>
+              <Nav.Link href="#second" onClick={ () => updateViews('active') }>Active</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#third" onClick={ () => updateViews() } > Completed </Nav.Link>
+              <Nav.Link href="#third" onClick={ () => updateViews('completed') } > Completed </Nav.Link>
             </Nav.Item>
           </Nav>
         </Card.Header>
