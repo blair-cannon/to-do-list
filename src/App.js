@@ -22,7 +22,7 @@ function App() {
     return todos.filter((todo) => todo.status === 'active').length;
     })  
   })
-
+// updates counter on each render 
 
 
   useEffect(() => {
@@ -42,11 +42,14 @@ function App() {
     inputRef.current.value = null; // empties input box 
   }
 
-  // function handleDelete(e) {
-  //   console.log('deleted');
-  //   const updatedTodos = todos.filter(todo => id !== todo.id);
-  //   setTodoList(updatedTodos);
-  // }
+  function showActive() {
+    if (view === 'all'){
+      todos = todos.filter((todo) => todo.status === 'active')
+    }
+    if (view === 'completed'){
+      todos = todos.filter((todo) => todo.status === 'active')
+    }
+  }
 
   return (
     <div className="App">
@@ -54,13 +57,13 @@ function App() {
         <Card.Header>
           <Nav variant="tabs" defaultActiveKey="#first">
             <Nav.Item>
-              <Nav.Link href="#first">All</Nav.Link>
+              <Nav.Link href="#first" onClick={ () => updateViews() } >All</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#link">Active</Nav.Link>
+              <Nav.Link href="#second" onClick={ () => updateViews() }>Active</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#disabled"> Completed </Nav.Link>
+              <Nav.Link href="#third" onClick={ () => updateViews() } > Completed </Nav.Link>
             </Nav.Item>
           </Nav>
         </Card.Header>
