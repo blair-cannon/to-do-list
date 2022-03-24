@@ -18,11 +18,11 @@ function App() {
     inputRef.current.value = null; // empties input box 
   }
 
-  function handleDelete(e) {
-    console.log('deleted');
-    const updatedTodos = todos.filter(todo => id !== todo.id);
-    setTodoList(updatedTodos);
-  }
+  // function handleDelete(e) {
+  //   console.log('deleted');
+  //   const updatedTodos = todos.filter(todo => id !== todo.id);
+  //   setTodoList(updatedTodos);
+  // }
 
   return (
     <div className="App">
@@ -47,7 +47,7 @@ function App() {
             <button onClick={newTodo} >Add</button>
           </Card.Title>
           <Card.Text>
-            <ToDoList todos={ todos } handleDelete={handleDelete} />
+            <ToDoList todos={ todos } setTodoList={ setTodoList } />
             <span>Counter</span>
           </Card.Text>
           <ButtonGroup aria-label="Basic example">
