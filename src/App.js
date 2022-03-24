@@ -9,13 +9,18 @@ function App() {
   const inputRef = useRef();
   // https://reactjs.org/docs/hooks-reference.html#useref 
   
-  function newTodo(){
+  function newTodo(e){
     // console.log(inputRef.current.value);
     let newState = todos;
     newState.push(inputRef.current.value);
     setTodoList([...newState]);
     console.log('todos:', todos);
     inputRef.current.value = null; // empties input box 
+  }
+
+  function handleDelete(e) {
+    console.log('deleted');
+    
   }
 
   return (
@@ -41,7 +46,7 @@ function App() {
             <button onClick={newTodo} >Add</button>
           </Card.Title>
           <Card.Text>
-            <ToDoList todos={ todos } />
+            <ToDoList todos={ todos } handleDelete={handleDelete} />
             <span>Counter</span>
           </Card.Text>
           <ButtonGroup aria-label="Basic example">

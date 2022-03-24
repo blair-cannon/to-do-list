@@ -4,22 +4,36 @@ import { CloseButton, ListGroup, Inp } from 'react-bootstrap/';
 
 
 
-export default function Task({ todo }) {
+export default function Task({ todo, handleDelete } ) {
       const [task, setTask] = useState({
         todo: {todo},
         id: Date.now(), 
         status: 'active'
       })
-      console.log('status:', task.status );
 // gets todo (description) from todo prop from input 
 // id and status are defined in useState 
+
+  function handleCheckClick(e) {
+    console.log('clicked');
+    console.log(task.status);
+    let newTaskInstance = task;
+    if ( task.status === 'active' ){
+      task.status = 'completed'
+    }
+    else if ( task.status === 'completed' ){
+      task.status = 'active'
+    }
+    setTask(newTaskInstance)
+  }
+
   return (
     <div>
       <ListGroup>
         <ListGroup.Item>  
-            <input onChange={handleCheckClick} className="marginRight" type="checkbox" checked="completed" />
+            <input onChange={handleCheckClick} className="marginRight" type="checkbox" />
             <label className="marginRight">{todo}</label>
-          <CloseButton /></ListGroup.Item>
+          <CloseButton onClick={handleDelete} />
+        </ListGroup.Item>
       </ListGroup>
     
       {/* { todo }
