@@ -15,6 +15,9 @@ function App() {
     return saved || [];
   });
   // presents saved todos or returns empty array as intial state
+  
+  let counter = todos.filter((todo) => todo.status === 'active').length;
+  console.log(counter);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -68,8 +71,8 @@ function App() {
             <button onClick={newTodo} >Add</button>
           </Card.Title>
           <Card.Text>
-            <ToDoList todos={ todos } setTodoList={ setTodoList }  />
-            <span>Counter</span>
+            <ToDoList todos={ todos } setTodoList={ setTodoList } />
+            <span>{ counter }</span>
           </Card.Text>
           <ButtonGroup aria-label="Basic example">
             <Button variant="primary">Check All </Button>
