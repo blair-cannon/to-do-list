@@ -8,6 +8,7 @@ function App() {
   // https://reactjs.org/docs/hooks-reference.html#useref 
 
   const [view, setView] = useState('all');
+  const [counter, setCounter] = useState(0);
 
   const [todos, setTodoList] = useState(() => {
     const string = localStorage.getItem("todos");
@@ -15,17 +16,8 @@ function App() {
     return saved || [];
   });
   // presents saved todos or returns empty array as intial state
-  
-  let counter = todos.filter((todo) => todo.status === 'active').length;
-  console.log(counter);
-
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
-  // on change of [todos], new todo is saved into local storage
 
   function newTodo(e){
-    // console.log(inputRef.current.value);
     let newState = todos;
     let todoObject = {
       description: inputRef.current.value,
@@ -34,19 +26,55 @@ function App() {
     }
     newState.push(todoObject);
     setTodoList([...newState]);
-    console.log('todos:', todos);
     inputRef.current.value = null; // empties input box 
   }
+  
+  useEffect(() => {
+    setCounter((counter) => {
+    return todos.filter((todo) => todo.status === 'active').length;
+    })  
+  })
+  // updates counter on each render 
 
-  // function handleDelete(e) {
-  //   console.log('deleted');
-  //   const updatedTodos = todos.filter(todo => id !== todo.id);
-  //   setTodoList(updatedTodos);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+  // on change of [todos], new todo is saved into local storage
+
+  // let newView = todos;
+  // if (view === "active"){
+  //   newView = todos.filter(todo.status === "active");
+  //   console.log('hey');
+  // }
+  //  if (view === "completed"){
+  //   newView = todos.filter((todo) => todo.status === "completed");
+  //   console.log('hey');
+  //   return [newView];
   // }
 
-  // function todoCount() {
+  function handleUncheckAll() {
+    console.log('handled');
+    setTodoList((todos) => {
+      todos.forEach(element => element.status = 'active');
+      return [...todos]
+    })
+  }
 
-  // }
+  function handleCheckAll() {
+    console.log('handled');
+    setTodoList((todos) => {
+      todos.forEach(element => element.status = 'completed');
+      return [...todos]
+    })
+  }
+
+  function handleDeleteCompleted() {
+    setTodoList((todos) => {
+      let active = todos.filter(todo => todo.status !== 'completed');
+      return active;
+    })
+  }
 
   return (
     <div className="App">
@@ -54,13 +82,13 @@ function App() {
         <Card.Header>
           <Nav variant="tabs" defaultActiveKey="#first">
             <Nav.Item>
-              <Nav.Link href="#first">All</Nav.Link>
+              <Nav.Link href="#first" onClick={ () => setView('all') } >All</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#link">Active</Nav.Link>
+              <Nav.Link href="#second" onClick={ () => setView('active') }>Active</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#disabled"> Completed </Nav.Link>
+              <Nav.Link href="#third" onClick={ () => setView('completed') } > Completed </Nav.Link>
             </Nav.Item>
           </Nav>
         </Card.Header>
@@ -70,14 +98,14 @@ function App() {
             <input ref={inputRef} type="text" placeholder="Enter your new task"></input>
             <button onClick={newTodo} >Add</button>
           </Card.Title>
-          <Card.Text>
+          <div>
             <ToDoList todos={ todos } setTodoList={ setTodoList } />
-            <span>{ counter }</span>
-          </Card.Text>
+            <span> Remaining tasks: {counter} </span>
+          </div>
           <ButtonGroup aria-label="Basic example">
-            <Button variant="primary">Check All </Button>
-            <Button variant="primary">Delete Completed</Button>
-            <Button variant="primary">Uncheck All</Button>
+            <Button onClick={ handleCheckAll }  variant="primary">Check All </Button>
+            <Button onClick={ handleDeleteCompleted } variant="primary">Delete Completed</Button>
+            <Button onClick={ handleUncheckAll } variant="primary">Uncheck All</Button>
           </ButtonGroup>
         </Card.Body>
       </Card>
