@@ -7,7 +7,7 @@ export default function ToDoList({ todos, setTodoList }) {
   console.log(todos)
   return (
     todos.map(todo => {
-      return <Task todo={ todo } todos={ todos } setTodoList={ setTodoList } key={ todo.id } />
+      return <Task todo={ todo } todos={ todos } setTodoList={ setTodoList } key={ todo.id }  />
     })
   )
 }

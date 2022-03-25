@@ -16,19 +16,6 @@ function App() {
     return saved || [];
   });
   // presents saved todos or returns empty array as intial state
-  
-  useEffect(() => {
-    setCounter((counter) => {
-    return todos.filter((todo) => todo.status === 'active').length;
-    })  
-  })
-// updates counter on each render 
-
-
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
-  // on change of [todos], new todo is saved into local storage
 
   function newTodo(e){
     let newState = todos;
@@ -41,10 +28,52 @@ function App() {
     setTodoList([...newState]);
     inputRef.current.value = null; // empties input box 
   }
+  
+  useEffect(() => {
+    setCounter((counter) => {
+    return todos.filter((todo) => todo.status === 'active').length;
+    })  
+  })
+  // updates counter on each render 
 
-  function updateViews(prop) {
-      return todos = todos.filter((todo) => todo.status === prop
-      // setview???
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+  // on change of [todos], new todo is saved into local storage
+
+  // let newView = todos;
+  // if (view === "active"){
+  //   newView = todos.filter(todo.status === "active");
+  //   console.log('hey');
+  // }
+  //  if (view === "completed"){
+  //   newView = todos.filter((todo) => todo.status === "completed");
+  //   console.log('hey');
+  //   return [newView];
+  // }
+
+  function handleUncheckAll() {
+    console.log('handled');
+    setTodoList((todos) => {
+      todos.forEach(element => element.status = 'active');
+      return [...todos]
+    })
+  }
+
+  function handleCheckAll() {
+    console.log('handled');
+    setTodoList((todos) => {
+      todos.forEach(element => element.status = 'completed');
+      return [...todos]
+    })
+  }
+
+  function handleDeleteCompleted() {
+    setTodoList((todos) => {
+      let active = todos.filter(todo => todo.status !== 'completed');
+      return active;
+    })
   }
 
   return (
@@ -53,13 +82,13 @@ function App() {
         <Card.Header>
           <Nav variant="tabs" defaultActiveKey="#first">
             <Nav.Item>
-              <Nav.Link href="#first" onClick={ () => updateViews('active || completed') } >All</Nav.Link>
+              <Nav.Link href="#first" onClick={ () => setView('all') } >All</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#second" onClick={ () => updateViews('active') }>Active</Nav.Link>
+              <Nav.Link href="#second" onClick={ () => setView('active') }>Active</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#third" onClick={ () => updateViews('completed') } > Completed </Nav.Link>
+              <Nav.Link href="#third" onClick={ () => setView('completed') } > Completed </Nav.Link>
             </Nav.Item>
           </Nav>
         </Card.Header>
@@ -74,9 +103,9 @@ function App() {
             <span> Remaining tasks: {counter} </span>
           </div>
           <ButtonGroup aria-label="Basic example">
-            <Button variant="primary">Check All </Button>
-            <Button variant="primary">Delete Completed</Button>
-            <Button variant="primary">Uncheck All</Button>
+            <Button onClick={ handleCheckAll }  variant="primary">Check All </Button>
+            <Button onClick={ handleDeleteCompleted } variant="primary">Delete Completed</Button>
+            <Button onClick={ handleUncheckAll } variant="primary">Uncheck All</Button>
           </ButtonGroup>
         </Card.Body>
       </Card>

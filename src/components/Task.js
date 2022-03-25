@@ -14,6 +14,8 @@ export default function Task({ todo, todos, setTodoList } ) {
     })
   }
 
+
+
   function handleDeleteTodo(e) {
     setTodoList((todos) => {
       let targetTodo = todos.find(clicked => clicked.id === todo.id)
