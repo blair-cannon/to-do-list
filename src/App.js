@@ -56,7 +56,7 @@ function App() {
       status: 'active'
     }
     newState.push(todoObject);
-    setTodoList([...newState]);
+    setTodoList(newState);
     inputRef.current.value = null; // empties input box 
   }
 

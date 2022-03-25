@@ -1,11 +1,11 @@
 import React from 'react';
 import Task from './Task';
 
-export default function ToDoList({ todos, setTodoList }) {
+export default function ToDoList({ setTodoList }) {
 
   return (
     todos.map(todo => {
-      return <Task todo={ todo } todos={ todos } setTodoList={ setTodoList } key={ todo.id }  />
+      return <Task todo={ todo } setTodoList={ setTodoList } key={ todo.id }  />
     })
   )
 }
