@@ -42,27 +42,19 @@ function App() {
   }, [todos]);
   // on change of [todos], new todo is saved into local storage
 
-  // let newView = todos;
-  // if (view === "active"){
-  //   newView = todos.filter(todo.status === "active");
-  //   console.log('hey');
-  // }
-  //  if (view === "completed"){
-  //   newView = todos.filter((todo) => todo.status === "completed");
-  //   console.log('hey');
-  //   return [newView];
-  // }
 
+  // storing my filtered todo lists in variable newView
+  // this way todos is not changed when changing between views
+  // these if statements are hit when the view is updated on click of the filter tabs
     let newView = todos;
   if (view === "active"){
-    todos.filter((todo) => todo.status === "active")
-    // newView = todos.filter(todo.status === "active");
-    console.log('hey');
+    newView = todos.filter((todo) => todo.status === "active")
   }
-   if (view === "completed"){
-    newView = todos.filter((todo) => todo.status === "completed");
-    console.log('hey');
-    return [newView];
+  else if (view === "completed"){
+    newView = todos.filter((todo) => todo.status === "completed")
+  }
+  else if (view === "all") {
+    newView = todos
   }
 
   function handleUncheckAll() {
@@ -88,18 +80,6 @@ function App() {
     })
   }
 
-  function filterForCompleted() {
-      let completed = todos.filter(todo => todo.status === 'completed');
-      return completed;
-  }
-
-  // function filterForActive() {
-  //   setTodoList((todos) => {
-  //     let completed = todos.filter(todo => todo.status === 'active');
-  //     return completed;
-  //   })
-  // }
-
   return (
     <div className="App">
       <Card className="centered-medium-card">
@@ -112,7 +92,7 @@ function App() {
               <Nav.Link href="#second" onClick={() => setView('active')}>Active</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#third" onClick={filterForCompleted} > Completed </Nav.Link>
+              <Nav.Link href="#third" onClick={() => setView('completed')} > Completed </Nav.Link>
             </Nav.Item>
           </Nav>
         </Card.Header>
@@ -123,7 +103,7 @@ function App() {
             <button onClick={newTodo} >Add</button>
           </Card.Title>
           <div>
-            <ToDoList todos={ todos } setTodoList={ setTodoList } />
+            <ToDoList todos={ newView } setTodoList={ setTodoList }  />
             <span> Remaining tasks: {counter} </span>
           </div>
           <ButtonGroup aria-label="Basic example">
