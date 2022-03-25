@@ -1,13 +1,32 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    background-color: transparent !important
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.marginRight {
+    margin-right: 2rem;
+}
+
+.centered-medium-card {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10rem;
+    width: 500px;
+    height: min-content;
+    border: 1px solid rgb(0 0 0 / 25%);
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    box-shadow: 5px 5px lightgray;
+}
+
+html {
+    background-image: url(./img/stickynotes.jpg);
+    background-size: cover; 
+    background-repeat: repeat-y;
+    text-align:center;
+    margin:auto;
+    padding:0;
+}
+
+.strikethrough {
+    text-decoration: line-through;
 }
