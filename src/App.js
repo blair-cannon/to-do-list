@@ -34,7 +34,7 @@ function App() {
     return todos.filter((todo) => todo.status === 'active').length;
     })  
   })
-  // updates counter on each render 
+  // updates counter on each render, no
 
 
   useEffect(() => {

@@ -1,3 +1,6 @@
+body {
+    background-color: transparent !important
+}
 
 .marginRight {
     margin-right: 2rem;
@@ -12,6 +15,7 @@
     border: 1px solid rgb(0 0 0 / 25%);
     font-family:'Courier New', Courier, monospace;
     font-weight: bold;
+    box-shadow: 5px 5px lightgray;
 }
 
 html {
