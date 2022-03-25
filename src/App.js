@@ -7,6 +7,7 @@ function App() {
   const inputRef = useRef();
   // https://reactjs.org/docs/hooks-reference.html#useref 
 
+  // STATES: 
   const [view, setView] = useState('all');
   const [counter, setCounter] = useState(0);
 
@@ -16,7 +17,37 @@ function App() {
     return saved || [];
   });
   // presents saved todos or returns empty array as intial state
+  
+  // USE EFFECTS: 
+  useEffect(() => {
+    setCounter((counter) => {
+    return todos.filter((todo) => todo.status === 'active').length;
+    })  
+  })
+  // updates counter on each render, no dependency array
 
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+  // on change of [todos], new todo is saved into local storage
+
+
+  // FILTER VIEWS: 
+    let newView = todos;
+  if (view === "active"){
+    newView = todos.filter((todo) => todo.status === "active")
+  }
+  else if (view === "completed"){
+    newView = todos.filter((todo) => todo.status === "completed")
+  }
+  else if (view === "all") {
+    newView = todos
+  }
+  // storing my filtered todo lists in variable newView
+  // this way todos is not changed when changing between the different views
+  // these if statements are hit when the view is updated on click of the filter tabs
+
+  // FUNCTIONS: 
   function newTodo(e){
     let newState = todos;
     let todoObject = {
@@ -28,35 +59,8 @@ function App() {
     setTodoList([...newState]);
     inputRef.current.value = null; // empties input box 
   }
-  
-  useEffect(() => {
-    setCounter((counter) => {
-    return todos.filter((todo) => todo.status === 'active').length;
-    })  
-  })
-  // updates counter on each render, no
 
-
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
-  // on change of [todos], new todo is saved into local storage
-
-
-  // storing my filtered todo lists in variable newView
-  // this way todos is not changed when changing between views
-  // these if statements are hit when the view is updated on click of the filter tabs
-    let newView = todos;
-  if (view === "active"){
-    newView = todos.filter((todo) => todo.status === "active")
-  }
-  else if (view === "completed"){
-    newView = todos.filter((todo) => todo.status === "completed")
-  }
-  else if (view === "all") {
-    newView = todos
-  }
-
+  // want to refactor UncheckAll and CheckAll to be one function
   function handleUncheckAll() {
     setTodoList((todos) => {
       todos.forEach(element => element.status = 'active');
