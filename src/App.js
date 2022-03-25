@@ -58,7 +58,6 @@ function App() {
   }
 
   function handleUncheckAll() {
-    console.log('handled');
     setTodoList((todos) => {
       todos.forEach(element => element.status = 'active');
       return [...todos]
@@ -66,7 +65,6 @@ function App() {
   }
 
   function handleCheckAll() {
-    console.log('handled');
     setTodoList((todos) => {
       todos.forEach(element => element.status = 'completed');
       return [...todos]

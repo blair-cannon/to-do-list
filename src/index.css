@@ -22,3 +22,7 @@ html {
     margin:auto;
     padding:0;
 }
+
+.strikethrough {
+    text-decoration: line-through;
+}

@@ -31,7 +31,7 @@ export default function Task({ todo, todos, setTodoList } ) {
       <ListGroup>
         <ListGroup.Item>  
             <input onChange={ handleCheckClick } className="marginRight" type="checkbox" checked={todo.status === 'completed'} />
-            <label className="marginRight">{todo.description}</label>
+            <label className={`marginRight ${todo.status === 'completed' ? "strikethrough" : ''}`} >{todo.description}</label>
           <CloseButton onClick={ handleDeleteTodo }  />
         </ListGroup.Item>
       </ListGroup>
