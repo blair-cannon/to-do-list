@@ -53,6 +53,18 @@ function App() {
   //   return [newView];
   // }
 
+    let newView = todos;
+  if (view === "active"){
+    todos.filter((todo) => todo.status === "active")
+    // newView = todos.filter(todo.status === "active");
+    console.log('hey');
+  }
+   if (view === "completed"){
+    newView = todos.filter((todo) => todo.status === "completed");
+    console.log('hey');
+    return [newView];
+  }
+
   function handleUncheckAll() {
     console.log('handled');
     setTodoList((todos) => {
@@ -76,6 +88,18 @@ function App() {
     })
   }
 
+  function filterForCompleted() {
+      let completed = todos.filter(todo => todo.status === 'completed');
+      return completed;
+  }
+
+  // function filterForActive() {
+  //   setTodoList((todos) => {
+  //     let completed = todos.filter(todo => todo.status === 'active');
+  //     return completed;
+  //   })
+  // }
+
   return (
     <div className="App">
       <Card className="centered-medium-card">
@@ -85,10 +109,10 @@ function App() {
               <Nav.Link href="#first" onClick={ () => setView('all') } >All</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#second" onClick={ () => setView('active') }>Active</Nav.Link>
+              <Nav.Link href="#second" onClick={() => setView('active')}>Active</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#third" onClick={ () => setView('completed') } > Completed </Nav.Link>
+              <Nav.Link href="#third" onClick={filterForCompleted} > Completed </Nav.Link>
             </Nav.Item>
           </Nav>
         </Card.Header>
