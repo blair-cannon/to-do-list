@@ -1,20 +1,6 @@
-/* .App {
-width: 50vw;
-height: 50vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 2rem;
-border: solid 2px red;
-margin-left: auto;
-margin-right: auto;
+body {
+    background-color: transparent !important
 }
-
-.inputMolecule {
-    display: flex;
-    margin-bottom: 3rem;
-} */
 
 .marginRight {
     margin-right: 2rem;
@@ -23,8 +9,24 @@ margin-right: auto;
 .centered-medium-card {
     margin-right: auto;
     margin-left: auto;
-    margin-top: 3rem;
+    margin-top: 10rem;
     width: 500px;
     height: min-content;
     border: 1px solid rgb(0 0 0 / 25%);
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    box-shadow: 5px 5px lightgray;
+}
+
+html {
+    background-image: url(./img/stickynotes.jpg);
+    background-size: cover; 
+    background-repeat: repeat-y;
+    text-align:center;
+    margin:auto;
+    padding:0;
+}
+
+.strikethrough {
+    text-decoration: line-through;
 }

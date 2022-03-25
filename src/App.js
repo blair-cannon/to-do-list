@@ -7,6 +7,7 @@ function App() {
   const inputRef = useRef();
   // https://reactjs.org/docs/hooks-reference.html#useref 
 
+  // STATES: 
   const [view, setView] = useState('all');
   const [counter, setCounter] = useState(0);
 
@@ -16,7 +17,37 @@ function App() {
     return saved || [];
   });
   // presents saved todos or returns empty array as intial state
+  
+  // USE EFFECTS: 
+  useEffect(() => {
+    setCounter((counter) => {
+    return todos.filter((todo) => todo.status === 'active').length;
+    })  
+  })
+  // updates counter on each render, no dependency array
 
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+  // on change of [todos], new todo is saved into local storage
+
+
+  // FILTER VIEWS: 
+    let newView = todos;
+  if (view === "active"){
+    newView = todos.filter((todo) => todo.status === "active")
+  }
+  else if (view === "completed"){
+    newView = todos.filter((todo) => todo.status === "completed")
+  }
+  else if (view === "all") {
+    newView = todos
+  }
+  // storing my filtered todo lists in variable newView
+  // this way todos is not changed when changing between the different views
+  // these if statements are hit when the view is updated on click of the filter tabs
+
+  // FUNCTIONS: 
   function newTodo(e){
     let newState = todos;
     let todoObject = {
@@ -28,33 +59,9 @@ function App() {
     setTodoList([...newState]);
     inputRef.current.value = null; // empties input box 
   }
-  
-  useEffect(() => {
-    setCounter((counter) => {
-    return todos.filter((todo) => todo.status === 'active').length;
-    })  
-  })
-  // updates counter on each render 
 
-
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
-  // on change of [todos], new todo is saved into local storage
-
-  // let newView = todos;
-  // if (view === "active"){
-  //   newView = todos.filter(todo.status === "active");
-  //   console.log('hey');
-  // }
-  //  if (view === "completed"){
-  //   newView = todos.filter((todo) => todo.status === "completed");
-  //   console.log('hey');
-  //   return [newView];
-  // }
-
+  // want to refactor UncheckAll and CheckAll to be one function
   function handleUncheckAll() {
-    console.log('handled');
     setTodoList((todos) => {
       todos.forEach(element => element.status = 'active');
       return [...todos]
@@ -62,7 +69,6 @@ function App() {
   }
 
   function handleCheckAll() {
-    console.log('handled');
     setTodoList((todos) => {
       todos.forEach(element => element.status = 'completed');
       return [...todos]
@@ -85,10 +91,10 @@ function App() {
               <Nav.Link href="#first" onClick={ () => setView('all') } >All</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#second" onClick={ () => setView('active') }>Active</Nav.Link>
+              <Nav.Link href="#second" onClick={() => setView('active')}>Active</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#third" onClick={ () => setView('completed') } > Completed </Nav.Link>
+              <Nav.Link href="#third" onClick={() => setView('completed')} > Completed </Nav.Link>
             </Nav.Item>
           </Nav>
         </Card.Header>
@@ -99,7 +105,7 @@ function App() {
             <button onClick={newTodo} >Add</button>
           </Card.Title>
           <div>
-            <ToDoList todos={ todos } setTodoList={ setTodoList } />
+            <ToDoList todos={ newView } setTodoList={ setTodoList }  />
             <span> Remaining tasks: {counter} </span>
           </div>
           <ButtonGroup aria-label="Basic example">
