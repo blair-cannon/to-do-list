@@ -56,7 +56,7 @@ function App() {
       status: 'active'
     }
     newState.push(todoObject);
-    setTodoList(newState);
+    setTodoList([...newState]);
     inputRef.current.value = null; // empties input box 
   }
 
@@ -88,7 +88,7 @@ function App() {
         <Card.Header>
           <Nav variant="tabs" defaultActiveKey="#first">
             <Nav.Item>
-              <Nav.Link href="#first" onClick={ () => setView('all') } >All</Nav.Link>
+              <Nav.Link href="#first" onClick={() => setView('all') } >All</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="#second" onClick={() => setView('active')}>Active</Nav.Link>
